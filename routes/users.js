@@ -1,9 +1,17 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+import WorkersController from "../controllers/WorkersController";
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+// workers
 
-module.exports = router;
+router.post('/workers/add', WorkersController.addWorker);
+router.put('/workers/update', WorkersController.editWorker);
+router.post('/workers/fire', WorkersController.deleteWorker);
+router.post('/workers/login', WorkersController.loginWorker)
+
+// managers
+
+router.post('/manager/add', WorkersController.addManager);
+router.post('/manager/login', WorkersController.loginManager);
+
+export default router;

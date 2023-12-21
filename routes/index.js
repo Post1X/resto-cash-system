@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+import auth from "../middlewares/auth";
+import users from "./users";
+import terminal from "./terminal";
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+const express = require('express');
+const router = express.Router();
 
-module.exports = router;
+
+router.use('/users', auth, users); // Пользователи (работники, менеджеры, суперюзеры и т.д..)
+router.use('/terminal', auth, terminal); // Раут управления кассовыми аппаратами
+
+export default router;
